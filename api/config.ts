@@ -8,4 +8,7 @@ export default {
   AUTH_SECRET                   : process.env.AUTH_SECRET || "secret",
   AUTH_SALT_ROUND               : process.env.AUTH_SALT_ROUND || 8,
   AUTH_EXPIRE_IN                : process.env.AUTH_EXPIRE_IN || "24h",
+  MONGODB_URL                   : process.env.MONGODB_URL || "mongodb://localhost/test",
+  MONGODB_AUTH_USERNAME         : process.env.MONGODB_AUTH_USERNAME || "admin",
+  MONGODB_AUTH_PASSWORD         : process.env.MONGODB_AUTH_PASSWORD || "admin",
 };

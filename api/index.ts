@@ -8,7 +8,11 @@ import App from "./bin/server";
 
 import { RoutesV1 } from "./src/routes/v1/index";
 
-import { ExpressResponseDefault } from "./utils/ExpressResponseDefault";
+import { ExpressResponseDefault } from "./src/utils/expressResponseDefault";
+
+import * as mongodbConnection from './src/utils/mongodbConnection'
+
+mongodbConnection.connect()
 
 debug("ts-express:server");
 
@@ -60,7 +64,7 @@ function onError(error: NodeJS.ErrnoException): void {
 function onListening(): void {
   let addr = server.address();
   let bind = typeof addr === "string" ? `pipe ${addr}` : `porta ${addr.port}`;
-  debug(`Escutando em ${bind}`);
+  console.log(`Escutando em ${bind}`);
 }
 
 function logErrors(

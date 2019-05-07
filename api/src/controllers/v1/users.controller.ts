@@ -1,5 +1,5 @@
 import { UserModel, User } from "../../models/v1/users.model";
-import { ExpressResponseDefault } from "../../../utils/ExpressResponseDefault";
+import { ExpressResponseDefault } from "../../utils/expressResponseDefault";
 import express = require("express");
 
 export class UserController {
