@@ -1,76 +1,26 @@
-export interface UserModel {
-  id: number;
-  name: string;
-  lastName: string;
-}
+import { Schema, model } from 'mongoose';
 
-export class User {
-  private userList: [UserModel];
-  constructor() {
-    this.userList = [
-      {
-        id: 1,
-        name: "Alex",
-        lastName: "Ribeiro"
-      }
-    ];
-  }
+const UserSchema = new Schema({
+  username: {
+    type: String,
+    required: true
+  },
+  firstname: {
+    type: String,
+    required: true
+  },
+  lastname: {
+    type: String,
+    required: true
+  },
+  email: {
+    type: String,
+    required: true
+  },
+  password: {
+    type: String,
+    required: true
+  },
+})
 
-  public getAll(): Promise<UserModel[]> {
-    return new Promise((resolve, reject) => {
-      resolve(this.userList);
-    });
-  }
-
-  public getById(id: number): Promise<UserModel[]> {
-    return new Promise((resolve, reject) => {
-      let user = this.userList.filter(user => {
-        return user.id == id;
-      });
-
-      if (user.length > 0) {
-        resolve(user);
-      } else {
-        reject("Usuário não foi encontrado.");
-      }
-    });
-  }
-
-  public create(user: UserModel): Promise<UserModel> {
-    return new Promise((resolve, reject) => {
-      let userIndex = this.userList.push(user);
-      resolve(this.userList[userIndex]);
-    });
-  }
-
-  public edit(id: number, user: UserModel): Promise<UserModel> {
-    return new Promise((resolve, reject) => {
-      let userIndex = this.userList.findIndex((user, index, array) => {
-        return user.id == id;
-      });
-
-      console.log(user, userIndex);
-      if (userIndex != -1) {
-        this.userList[userIndex] = user;
-        resolve(this.userList[userIndex]);
-      } else {
-        reject("Usuário não foi encontrado.");
-      }
-    });
-  }
-
-  public delete(id: number): Promise<boolean> {
-    return new Promise((resolve, reject) => {
-      let userIndex = this.userList.findIndex((user, index, array) => {
-        return user.id == id;
-      });
-
-      if (userIndex == -1) {
-        reject("Usuário não foi encontrado.");
-      } else {
-        this.userList.splice(userIndex, 1);
-        resolve();
-      }
-    });
-  }
-}
+export const UserModel = model('User', UserSchema);

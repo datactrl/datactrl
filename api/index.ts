@@ -14,7 +14,7 @@ import * as mongodbConnection from './src/utils/mongodbConnection'
 
 mongodbConnection.connect()
 
-debug("ts-express:server");
+console.log("ts-express:server");
 
 const port = normalizePort(config.PORT);
 App.set("port", port);
